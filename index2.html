@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قائمة المهام اليومية - Techno Solutions</title>
+    <style>
+        body { font-family: 'Cairo', sans-serif; background-color: #0d1117; color: #c9d1d9; margin: 0; padding: 20px; text-align: center; }
+        .header { background: #161b22; padding: 20px; border-radius: 10px; border-bottom: 3px solid #238636; margin-bottom: 30px; }
+        h2 { color: #238636; margin: 0; }
+        .table-container { overflow-x: auto; max-width: 900px; margin: 0 auto; background: #161b22; border-radius: 8px; padding: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { padding: 12px; border: 1px solid #30363d; text-align: center; }
+        th { background-color: #21262d; color: #238636; }
+        tr:hover { background-color: #1c2128; }
+        .status-btn { background: #238636; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 0.8em; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h2>منصة الموظف - كشوفات العملاء المستهدفة</h2>
+    <p>نظام التوزيع التلقائي للموظف رقم: 269269</p>
+</div>
+
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>اسم العميل</th>
+                <th>رقم الهاتف (مصر)</th>
+                <th>حالة الاتصال</th>
+            </tr>
+        </thead>
+        <tbody id="client-list">
+            </tbody>
+    </table>
+</div>
+
+<script>
+    const firstNames = ["أحمد", "محمد", "محمود", "إبراهيم", "ياسين", "سيد", "علي", "كريم", "مصطفى", "هانى", "تامر", "وليد"];
+    const lastNames = ["حسن", "عبد الله", "الجزار", "عزت", "نور", "شاكر", "زكي", "عيد", "راضي", "إسماعيل"];
+    const prefixes = ["010", "011", "012", "015"];
+    
+    const tableBody = document.getElementById('client-list');
+
+    for (let i = 1; i <= 50; i++) {
+        // توليد اسم مصري عشوائي
+        let randomName = firstNames[Math.floor(Math.random() * firstNames.length)] + " " + 
+                         lastNames[Math.floor(Math.random() * lastNames.length)];
+        
+        // توليد رقم موبايل مصري حقيقي (11 رقم)
+        let prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+        let suffix = Math.floor(10000000 + Math.random() * 90000000); // 8 أرقام عشوائية بعد البريفكس
+        let randomPhone = prefix + suffix;
+        
+        let row = `<tr>
+            <td>${i}</td>
+            <td>${randomName}</td>
+            <td>${randomPhone}</td>
+            <td><button class="status-btn">تحديث القائمة</button></td>
+        </tr>`;
+        tableBody.innerHTML += row;
+    }
+</script>
+
+<div style="margin-top: 30px; font-size: 0.8em; color: #8b949e;">
+    &copy; 2026 Techno Solutions Admin Panel - Code Shield Academy
+</div>
+
+</body>
+</html>
